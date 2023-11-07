@@ -1,42 +1,52 @@
-import React, { useState } from 'react'; 
-import {Button} from 'antd'  ;
+import React from 'react'; 
+
+import { Layout, } from 'antd';
+import App2 from './App2'
+// import {Row,Col} from 'antd';
+const {Header,Footer,Content}=Layout;
 function App(){
-  const[Loading,setLoading] = useState(false);
-  const onButtonClick=(e)=>{
-    console.log("Button Clicked");
-    setLoading(true);
-    
-    setTimeout(()=>{
-          setLoading(false);
-    },2000)
+ 
+   const headerStyle = {
+    textAlign: 'center',
+    color: '#fff',
+    height: 64,
+    lineHeight: '64px',
+    backgroundColor: '#7dbcea',
+    padding:'50'
+  };
   
-   }
+  const contentStyle = {
+    textAlign: 'center',
+    minHeight: 120,
+    lineHeight: '120px',
+    color: '#fff',
+    backgroundColor: '#108ee9',
+  };
+  
+  const footerStyle = {
+    textAlign: 'center',
+    color: '#fff',
+    backgroundColor: '#7dbcea',
+  };
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      width: "360px",
-      height: "640px",
-      margin: "50px auto",
-      borderRadius: "20px",
-      border: "2px solid blue",
-      overflow: "hidden",
-    }}>
-    
-      <form >
-        <h2 style={{color:'blueviolet'}}>Sign In Form </h2>
-        <label for="Username">Username</label>
-        <input type="text" />
-        <br/>
-        <br/>
-        <label for ="Password">Password</label>
-        <input type="password"/>
-        <br/>
-        <br/>
-         &emsp;<Button type="primary" size="default" loading={Loading} onClick={onButtonClick}>Submit</Button>
-      </form>
+    <div>
+        <Layout>
+        <Header style={headerStyle}>
+         
+          <App2/> 
+          <br/>
+        </Header>
+        <Content style={contentStyle}>
+    </Content>
+        <Footer style={footerStyle}>
+      </Footer>
+       </Layout>
+    {/* <Row>
+      <Col span={12}>col-12</Col>
+      <Col span={12}>col-12</Col>
+    </Row> */}
+
+      
     </div>
   )
 }
