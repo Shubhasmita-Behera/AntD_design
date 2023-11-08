@@ -1,11 +1,12 @@
 import React,{useState} from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import {Menu,Layout,Button,Form,Input} from 'antd';
+import {Menu,Layout,Button,Form,Input,Row,Col} from 'antd';
 import { Header } from 'antd/es/layout/layout';
+import './App2.css';
 function App2 (){
 const items =[
     {
-        label: 'mail',
+        label: 'login',
         key: 'mail',
         icon:<MailOutlined/>
     },
@@ -34,6 +35,8 @@ const items =[
       console.log('Failed:', errorInfo);
     };
     return (<div>
+       <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
+      <Col span={8}>
       <Layout>
         <Header>
           <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" theme="dark"items={items} />
@@ -43,7 +46,8 @@ const items =[
             remember: true,
           }}
           onFinish={onFinish} //will be invoked on form submit
-          onFinishFailed={onFinishFailed}>
+          onFinishFailed={onFinishFailed}
+          style={{ padding: '20px', border: '1px solid #d9d9d9', borderRadius: '4px' }}>
           <Form.Item
       label="Username"
       name="username"
@@ -76,6 +80,9 @@ const items =[
     </Form.Item>
   
           </Form>
-          </Layout></div>);
+          </Layout>
+          </Col>
+          </Row>
+          </div>);
   };
 export default App2;
