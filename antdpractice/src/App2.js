@@ -1,27 +1,42 @@
 import React,{useState} from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import {Menu,Layout,Button,Form,Input,Row,Col} from 'antd';
+import { AppstoreOutlined, MailOutlined, SettingOutlined,WhatsAppOutlined } from '@ant-design/icons';
+import {Menu,Layout,Button,Form,Input,Row,Col,message} from 'antd';
 import { Header } from 'antd/es/layout/layout';
+
+
 import './App2.css';
 function App2 (){
 const items =[
     {
         label: 'login',
         key: 'mail',
-        icon:<MailOutlined/>
+        icon:<MailOutlined/>,
+      
     },
     {
         label:'AppStore',
         key:'app',
-        icon: <AppstoreOutlined/>
+        icon: <AppstoreOutlined/>,
+       
     },
     {
     label:'Settings',
     key:'settings',
     icon:<SettingOutlined/>
+    },
+    {
+      label:'Scan QR',
+      key:'QR',
+      icon:<WhatsAppOutlined />
     }
 
 ]
+const [messageApi, contextHolder] = message.useMessage();
+const success = () => {
+  messageApi.open({
+    type: 'success',
+    content: 'This is a success message',
+  });}
 
     const [current, setCurrent] = useState('mail');
     const onClick = (e) => {
@@ -30,17 +45,22 @@ const items =[
     };
     const onFinish = (values) => {
       console.log('Success:', values);
+     
     };
     const onFinishFailed = (errorInfo) => {
       console.log('Failed:', errorInfo);
     };
-    return (<div>
+    return (
+    <div>
+      {contextHolder}
        <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
-      <Col span={8}>
+      <Col span={12}>
       <Layout>
         <Header>
-          <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" theme="dark"items={items} />
-          </Header>
+          <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" theme="dark" items={items}>
+          
+          </Menu></Header>
+          
           <Form name="form1"
           initialValues={{
             remember: true,
@@ -48,6 +68,7 @@ const items =[
           onFinish={onFinish} //will be invoked on form submit
           onFinishFailed={onFinishFailed}
           style={{ padding: '20px', border: '1px solid #d9d9d9', borderRadius: '4px' }}>
+      
           <Form.Item
       label="Username"
       name="username"
@@ -74,15 +95,19 @@ const items =[
     </Form.Item>
     <br/>
     <Form.Item>
-      <Button type="primary" htmlType="submit">
+      
+      <Button type="primary" htmlType="submit"onClick={success}>
         Submit
       </Button>
+      
     </Form.Item>
   
           </Form>
+         
           </Layout>
           </Col>
           </Row>
-          </div>);
+          </div>
+          );
   };
 export default App2;
