@@ -1,52 +1,52 @@
-import React from 'react'; 
+import React,{useState} from 'react'; 
+import App2 from './App2';
+import  './App.css';
+import { Menu,Layout} from 'antd';
+import { Header,Footer,Content } from 'antd/es/layout/layout';
+import {HomeOutlined,UserOutlined,WifiOutlined,SettingOutlined} from '@ant-design/icons';
+import{Router,Routes,Route} from 'react-router-dom';
 
-import { Layout, } from 'antd';
-import App2 from './App2'
-// import {Row,Col} from 'antd';
-const {Header,Footer,Content}=Layout;
+
 function App(){
- 
-   const headerStyle = {
-    textAlign: 'center',
-    color: '#fff',
-    height: 64,
-    lineHeight: '64px',
-    backgroundColor: '#7dbcea',
-    padding:'50'
-  };
+  const items =[
+    {
+        label: 'Home',
+        key: 'home',
+        icon:<HomeOutlined/>,
+      
+    },
+    {
+        label:'User',
+        key:'user',
+        icon: <UserOutlined/>,
+       
+    },
+    {
+      label:'WiFi Plans',
+      key:'wifi',
+      icon:<WifiOutlined/>
+      },
+    {
+    label:'Settings',
+    key:'settings',
+    icon:<SettingOutlined/>
+    }]
+    const [current, setCurrent] = useState('mail');
+    const onClick = (e) => {
+      console.log('click ', e);
+      setCurrent(e.key);
+    };
   
-  const contentStyle = {
-    textAlign: 'center',
-    minHeight: 120,
-    lineHeight: '120px',
-    color: '#fff',
-    backgroundColor: '#108ee9',
-  };
-  
-  const footerStyle = {
-    textAlign: 'center',
-    color: '#fff',
-    backgroundColor: '#7dbcea',
-  };
   return (
     <div>
-        <Layout>
-        <Header style={headerStyle}>
-         
-          <App2/> 
-          <br/>
-        </Header>
-        <Content style={contentStyle}>
-    </Content>
-        <Footer style={footerStyle}>
-      </Footer>
-       </Layout>
-    {/* <Row>
-      <Col span={12}>col-12</Col>
-      <Col span={12}>col-12</Col>
-    </Row> */}
-
-      
+      <Routes></Routes>
+      <Layout>
+      <Header id ="header"><Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" theme="dark" items={items}/></Header>
+      <Content id="content">
+      <App2/> </Content>
+      <Footer id ="footer">Thankyou For Connecting!!</Footer>
+        
+          </Layout>  
     </div>
   )
 }
