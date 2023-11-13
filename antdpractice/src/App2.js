@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined,WhatsAppOutlined } from '@ant-design/icons';
+import { MailOutlined, FacebookOutlined,WhatsAppOutlined } from '@ant-design/icons';
 import {Menu,Layout,Button,Form,Input,Row,Col,message} from 'antd';
-import { Header } from 'antd/es/layout/layout';
+import { Header,Footer } from 'antd/es/layout/layout';
 
 
 import './App2.css';
@@ -14,18 +14,16 @@ const items =[
       
     },
     {
-        label:'AppStore',
-        key:'app',
-        icon: <AppstoreOutlined/>,
+       
        
     },
     {
-    label:'Settings',
-    key:'settings',
-    icon:<SettingOutlined/>
+    label:'Facebook',
+    key:'telegram',
+    icon:<FacebookOutlined/>
     },
     {
-      label:'Scan QR',
+      label:'WhatsappWeb',
       key:'QR',
       icon:<WhatsAppOutlined />
     }
@@ -54,7 +52,8 @@ const success = () => {
     <div>
       {contextHolder}
        <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
-      <Col span={12}>
+       
+      <Col span={8}>
       <Layout>
         <Header>
           <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" theme="dark" items={items}>
@@ -67,7 +66,7 @@ const success = () => {
           }}
           onFinish={onFinish} //will be invoked on form submit
           onFinishFailed={onFinishFailed}
-          style={{ padding: '20px', border: '1px solid #d9d9d9', borderRadius: '4px' }}>
+          style={{ margin:'auto',padding: '5px', border: '1px solid #d9d9d9', borderRadius: '4px' }}>
       
           <Form.Item
       label="Username"
@@ -103,7 +102,9 @@ const success = () => {
     </Form.Item>
   
           </Form>
-         
+         <Footer style={{textAlign:'center',marginTop:'auto'}}>
+          Forgot Password <p>Don't have an account??Create a New account</p>
+         </Footer>
           </Layout>
           </Col>
           </Row>
