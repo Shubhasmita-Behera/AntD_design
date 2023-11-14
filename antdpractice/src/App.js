@@ -4,8 +4,10 @@ import  './App.css';
 import { Menu,Layout} from 'antd';
 import { Header,Footer,Content } from 'antd/es/layout/layout';
 import {HomeOutlined,UserOutlined,WifiOutlined,SettingOutlined} from '@ant-design/icons';
-import{Router,Routes,Route} from 'react-router-dom';
-
+import{ Routes,Route} from 'react-router-dom';
+import Home from './Routes/Home';
+import UserProfile from './Routes/UserProfile';
+import WifiSettings from './Routes/WifiSettings';
 
 function App(){
   const items =[
@@ -13,18 +15,22 @@ function App(){
         label: 'Home',
         key: 'home',
         icon:<HomeOutlined/>,
+        path:'/Home'
       
     },
     {
-        label:'User',
+        label:'UserProfile',
         key:'user',
         icon: <UserOutlined/>,
+        path:'/UserProfile',
+
        
     },
     {
       label:'WiFi Plans',
       key:'wifi',
-      icon:<WifiOutlined/>
+      icon:<WifiOutlined/>,
+      path:'/wifiPlan'
       },
     {
     label:'Settings',
@@ -39,14 +45,23 @@ function App(){
   
   return (
     <div>
-      <Routes></Routes>
+      
       <Layout>
-      <Header id ="header"><Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" theme="dark" items={items}/></Header>
+      <Header id ="header"><Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" theme="dark" items={items}/>
+      
+     </Header>
       <Content id="content">
-      <App2/> </Content>
+      <App2/>
+       </Content>
       <Footer id ="footer">Thankyou For Connecting!!</Footer>
-        
-          </Layout>  
+          </Layout>
+          <Routes>
+        <Route path='/'element={<Home />} />
+        <Route path='/userprofile'element={<UserProfile />} />
+        <Route path='/wifiPlan'element={<WifiSettings />} />
+      
+      </Routes> 
+          
     </div>
   )
 }

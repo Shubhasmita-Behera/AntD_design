@@ -3,7 +3,6 @@ import { MailOutlined, FacebookOutlined,WhatsAppOutlined } from '@ant-design/ico
 import {Menu,Layout,Button,Form,Input,Row,Col,message} from 'antd';
 import { Header,Footer } from 'antd/es/layout/layout';
 
-
 import './App2.css';
 function App2 (){
 const items =[
@@ -13,10 +12,7 @@ const items =[
         icon:<MailOutlined/>,
       
     },
-    {
-       
-       
-    },
+   
     {
     label:'Facebook',
     key:'telegram',
@@ -30,10 +26,11 @@ const items =[
 
 ]
 const [messageApi, contextHolder] = message.useMessage();
+
 const success = () => {
   messageApi.open({
     type: 'success',
-    content: 'This is a success message',
+    content: 'Logged In Successfully!!',
   });}
 
     const [current, setCurrent] = useState('mail');
@@ -43,6 +40,7 @@ const success = () => {
     };
     const onFinish = (values) => {
       console.log('Success:', values);
+     
      
     };
     const onFinishFailed = (errorInfo) => {
