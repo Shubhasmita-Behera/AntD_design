@@ -4,7 +4,7 @@ import {Menu,Layout,Button,Form,Input,Row,Col,message} from 'antd';
 import { Header,Footer } from 'antd/es/layout/layout';
 
 import './App2.css';
-function App2 (){
+function Loginform (){
 const items =[
     {
         label: 'login',
@@ -38,11 +38,28 @@ const success = () => {
       console.log('click ', e);
       setCurrent(e.key);
     };
-    const onFinish = (values) => {
-      console.log('Success:', values);
-     
-     
+    // const onFinish = (values) => {
+    //   console.log('Success:', values);}
+    const onFinish = async (values) => {
+      try {
+        const response = await fetch("http://localhost:8080/username", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        });
+    
+        const result = await response.json();
+        console.log("the result is",result); // Log or handle the response from the server
+    
+        // Optionally show a success message or navigate to another page
+        success();
+      } catch (error) {
+        console.error('Error submitting data to server:', error);
+      }
     };
+     
+     
+  
     const onFinishFailed = (errorInfo) => {
       console.log('Failed:', errorInfo);
     };
@@ -66,9 +83,19 @@ const success = () => {
           onFinishFailed={onFinishFailed}
           style={{ margin:'auto',padding: '5px', border: '1px solid #d9d9d9', borderRadius: '4px' }}>
       
+      
+      <Form.Item label="Username"
+      name="username"rules={[
+        {
+          required: true,
+          message: 'Please input your name!',
+        },
+      ]} 
+    ><Input/></Form.Item>
+          
           <Form.Item
-      label="Username"
-      name="username"
+      label="G-mailAddress"
+      name="mail"
       rules={[
         {
           required: true,
@@ -78,6 +105,7 @@ const success = () => {
     >
       <Input />
     </Form.Item> 
+    
     <Form.Item
       label="Password"
       name="password"
@@ -86,11 +114,13 @@ const success = () => {
           required: true,
           message: 'Please input your password!',
         },
+        
       ]}
     >
       <Input.Password />
     </Form.Item>
     <br/>
+    
     <Form.Item>
       
       <Button type="primary" htmlType="submit"onClick={success}>
@@ -98,7 +128,7 @@ const success = () => {
       </Button>
       
     </Form.Item>
-  
+ 
           </Form>
          <Footer style={{textAlign:'center',marginTop:'auto'}}>
           Forgot Password <p>Don't have an account??Create a New account</p>
@@ -109,4 +139,4 @@ const success = () => {
           </div>
           );
   };
-export default App2;
+export default Loginform;

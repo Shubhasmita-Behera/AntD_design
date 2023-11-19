@@ -1,10 +1,10 @@
 import React,{useState} from 'react'; 
-import App2 from './App2';
+import Loginform from './Loginfile';
 import  './App.css';
 import { Menu,Layout} from 'antd';
 import { Header,Footer,Content } from 'antd/es/layout/layout';
 import {HomeOutlined,UserOutlined,WifiOutlined,SettingOutlined} from '@ant-design/icons';
-import{ Routes,Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './Routes/Home';
 import UserProfile from './Routes/UserProfile';
 import WifiSettings from './Routes/WifiSettings';
@@ -35,35 +35,50 @@ function App(){
     {
     label:'Settings',
     key:'settings',
-    icon:<SettingOutlined/>
+    icon:<SettingOutlined/>,
+    path:'/setting'
     }]
     const [current, setCurrent] = useState('mail');
     const onClick = (e) => {
       console.log('click ', e);
       setCurrent(e.key);
     };
-  
+    
   return (
     <div>
-      
+     
       <Layout>
-      <Header id ="header"><Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" theme="dark" items={items}/>
+        
+         <Header id ="header">
+        <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" theme="dark" items={items} >
+        <Menu.Item >
+          <ul>
+            <li><Link to ="/"></Link>Home</li>
+            <li><Link to ="/UserProfile"></Link></li>
+            <li><Link to ="/wifiPlan"></Link></li>
+            <li><Link to ="/setting"></Link></li>
+          </ul>
+        </Menu.Item> 
+         </Menu>
+        
       
      </Header>
       <Content id="content">
-      <App2/>
+      <Loginform/>
        </Content>
       <Footer id ="footer">Thankyou For Connecting!!</Footer>
           </Layout>
-          <Routes>
-        <Route path='/'element={<Home />} />
-        <Route path='/userprofile'element={<UserProfile />} />
-        <Route path='/wifiPlan'element={<WifiSettings />} />
+         
+         <Routes> 
+        <Route path='/Home' element={<Home />} />
+        <Route path='/userprofile' element={<UserProfile />} />
+        <Route path='/wifiPlan' element={<WifiSettings />} />
       
       </Routes> 
+      
           
     </div>
   )
 }
 
-export default App
+export default App;
