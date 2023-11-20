@@ -18,19 +18,20 @@ app.use(bodyParser.json());
 app.post('/username',async(req, res)=>{
     try{
         const { username, mail} = req.body;
-    const insertPromises = username.map((username) => {
+    const insertPromises =  ((username,mail) => {
         const query = {
-          text: 'INSERT INTO Userlist (Username, "Email_Id") VALUES ($1, $2)',
+          text: 'INSERT INTO Userlist (Username, "Email_ID") VALUES ($1, $2)',
           values: [username, mail],
         };
         return pool.query(query);
       });
-      await Promise.all(insertPromises);
+      await Promise.all(insertPromises); //removed .all as there is one funstion
   
       res.sendStatus(201);
-    } catch (error) {
-      console.error('Error inserting dish and ingredients:', error);
-      res.status(500).json({ error: 'An error occurred while inserting dish and ingredients.' });
+    } 
+    catch (error) {
+      console.error('Error inserting username and mail in databse:', error);
+      res.status(500).json({ error: 'An error occurred while inserting username and mail in database' });
     }
   });
 
