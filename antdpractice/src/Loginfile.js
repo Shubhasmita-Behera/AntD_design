@@ -1,7 +1,8 @@
-import React,{useState} from 'react';
+import React from 'react';
+import './App.css'
 import { MailOutlined, FacebookOutlined,WhatsAppOutlined } from '@ant-design/icons';
-import {Menu,Layout,Button,Form,Input,Row,Col,message} from 'antd';
-import { Header,Footer } from 'antd/es/layout/layout';
+import {Layout,Button,Form,Input,Row,Col,message} from 'antd';
+import {Footer } from 'antd/es/layout/layout';
 
 import './App2.css';
 function Loginform (){
@@ -33,11 +34,8 @@ const success = () => {
     content: 'Logged In Successfully!!',
   });}
 
-    const [current, setCurrent] = useState('mail');
-    const onClick = (e) => {
-      console.log('click ', e);
-      setCurrent(e.key);
-    };
+   // const [current, setCurrent] = useState('mail');
+    
     // const onFinish = (values) => {
     //   console.log('Success:', values);}
     const onFinish = async (values) => {
@@ -68,12 +66,10 @@ const success = () => {
       {contextHolder}
        <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
        
-      <Col span={8}>
+      <Col >
       <Layout>
-        <Header>
-          <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" theme="dark" items={items}>
-          
-          </Menu></Header>
+        <div className='header'> JOIN ME
+          </div>
           
           <Form name="form1"
           initialValues={{
